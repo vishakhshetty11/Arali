@@ -1,5 +1,6 @@
-function CustomerTable({ customers, onDelete }){
-const handleDeleteClick = (id) => {
+import Loader from "./Loader";
+function CustomerTable({ customers, onDelete, showLoader }) {
+  const handleDeleteClick = (id) => {
     if (window.confirm("Are you sure you want to delete?")) {
       onDelete(id);
     }
@@ -7,6 +8,7 @@ const handleDeleteClick = (id) => {
 
   return (
     <div className="customerTableDiv">
+      {showLoader && <Loader />}
       <h3>Customer List</h3>
       <table>
         <thead>

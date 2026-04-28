@@ -1,7 +1,9 @@
 import { useState } from "react";
 import API from "../api";
+import Loader from "./Loader";
 
 function CustomerForm({ onCustomerAdded }) {
+    const [showLoader, setShowLoader] = useState(false);
     const [form, setForm] = useState({
         name: "",
         email: "",
@@ -18,7 +20,6 @@ function CustomerForm({ onCustomerAdded }) {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         const { name, email, phone } = form;
         let errors = {};
 
@@ -54,14 +55,23 @@ function CustomerForm({ onCustomerAdded }) {
             return;
         }
 
-        await API.post("/customers", form);
-
-        setForm({ name: "", email: "", phone: "" });
-        onCustomerAdded();
+        setShowLoader(true);
+        try {
+            await API.post("/customers", form);
+            await onCustomerAdded();
+            setForm({ name: "", email: "", phone: "" });
+        }
+        catch (error) {
+            console.log("Error", error)
+        }
+        finally {
+            setShowLoader(false)
+        }
     };
 
     return (
         <form className="form" onSubmit={handleSubmit}>
+            {showLoader && <Loader />}
             <h3>Add Customer</h3>
             <div>
                 <label>Name :</label>
