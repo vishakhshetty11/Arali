@@ -60,9 +60,11 @@ function CustomerForm({ onCustomerAdded }) {
             await API.post("/customers", form);
             await onCustomerAdded();
             setForm({ name: "", email: "", phone: "" });
+            alert("Customer Details Added Successfully!!");
         }
         catch (error) {
-            console.log("Error", error)
+            console.log("Error", error);
+            alert("Error While Adding Customer");
         }
         finally {
             setShowLoader(false)

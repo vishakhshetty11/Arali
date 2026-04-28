@@ -22,9 +22,11 @@ function App() {
     try {
       await API.delete(`/customers/${id}`);
       await fetchCustomers();
+      alert("Customer Details Deleted Successfully!!");
     }
     catch (error) {
-      console.log("Error", error)
+      console.log("Error", error);      
+      alert("Error Wile Deleting Customer");
     }
     finally {
       setShowLoader(false)
