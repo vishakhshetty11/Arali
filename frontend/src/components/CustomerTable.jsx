@@ -6,7 +6,7 @@ const handleDeleteClick = (id) => {
   };
 
   return (
-    <div>
+    <div className="customerTableDiv">
       <h3>Customer List</h3>
       <table>
         <thead>
