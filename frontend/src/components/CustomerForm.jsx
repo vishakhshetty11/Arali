@@ -22,7 +22,7 @@ function CustomerForm({ onCustomerAdded }) {
         e.preventDefault();
         const { name, email, phone } = form;
         let errors = {};
-
+        setValidation({});
         // Name validation
         if (!name) {
             errors.name = "Name is required";
