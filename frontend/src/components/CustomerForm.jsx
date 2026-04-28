@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "../api";
 
 function CustomerForm({ onCustomerAdded }) {
     const [form, setForm] = useState({
@@ -54,7 +54,7 @@ function CustomerForm({ onCustomerAdded }) {
             return;
         }
 
-        await axios.post("http://localhost:5000/customers", form);
+        await API.post("/customers", form);
 
         setForm({ name: "", email: "", phone: "" });
         onCustomerAdded();
